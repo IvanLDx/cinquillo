@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI';
+        }
+        #main {
+            margin: auto;
+            width: fit-content;
+        }
+        #cv {
+            border: 1px solid #333;
+            width: 800px;
+            height: 500px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .dalle {
+            margin-top: 4px;
+            background-color: white;
+            border: 1px solid #333;
+            cursor: pointer;
+        } .dalle:hover {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <canvas id="cv"></canvas>
+        <button class="dalle">Dálle!</button>
+        <span class="turn">0</span>
+    </div>
+
+<script src="client/js/socket.js"></script>
+<script type="module" src="client/js/main.js"></script>
+</body>
+</html>
