@@ -85,10 +85,28 @@ Player.createNPCs = () => {
     }
 };
 
-Player.setRounds = () => {
+Player.setTablePosition = () => {
     loop(Mgr.players, (player, i) => {
-        player.round = i;
+        player.tablePosition = i;
     });
+};
+
+Player.setRound = () => {
+    let cincoDeOuros = Deck.getCard('4-0');
+    let firstPlayer = Player.get(cincoDeOuros.owner);
+    let player = firstPlayer.player;
+    let iter = firstPlayer.i;
+    
+    let i = 0;
+    while(i < Player.getLength()) {
+        let player = Player.getList()[iter];
+        player.round = i + 1;
+        iter++;
+        if (iter >= Player.getLength()) {
+            iter = 0;
+        }
+        i++;
+    }
 };
 
 Player.send = () => {
@@ -96,7 +114,7 @@ Player.send = () => {
     loop(Mgr.players, player => {
         players.push({
             id: player.id,
-            round: player.round,
+            tablePosition: player.tablePosition,
             cards: Deck.getCardIDs(player.cards)
         });
     });
@@ -105,6 +123,22 @@ Player.send = () => {
 
 Player.getList = () => {
     return Mgr.players;
+};
+
+Player.get = (id) => {
+    let selectedPlayer;
+    let iter;
+    loop(Player.getList(), (player, i) => {
+        if (player.id === id) {
+            selectedPlayer = player;
+            iter = i;
+            return;
+        }
+    })
+    return {
+        player: selectedPlayer,
+        i: iter
+    };
 };
 
 Player.getLength = () => {

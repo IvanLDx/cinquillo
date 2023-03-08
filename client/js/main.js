@@ -18,11 +18,11 @@ socket.on('init', function (data) {
     Deck.create(data.deck);
     deck = Deck.cards;
     selfID = data.selfPlayer.id;
-    selfPlayer = Player.get(selfID);
     
     loop(data.players, player => {
         Player.create(player);
     });
+    selfPlayer = Player.get(selfID);
 });
 
 socket.on('update', function (data) {

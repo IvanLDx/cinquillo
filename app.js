@@ -6,7 +6,7 @@ const Player = require('./scripts/models/Player');
 const socketList = require('./scripts/models/socketList');
 const helpers = require('./scripts/helpers');
 const loop = helpers.loop;
-const FPS = 20;
+const FPS = 60;
 let setDistributeInterval;
 
 Deck.create();
@@ -25,7 +25,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('startGame', () => {
         Player.createNPCs();
-        Player.setRounds();
+        Player.setTablePosition();
         let iter = 0;
         setDistributeInterval = setInterval(() => {
             iter = distributeInterval(iter);   
@@ -36,6 +36,7 @@ io.sockets.on('connection', function (socket) {
 function distributeInterval (iter) {
     if (iter >= Deck.getLength()) {
         clearInterval(setDistributeInterval);
+        Player.setRound();
         return;
     }
 

@@ -58,6 +58,17 @@ Deck.getCardIDs = (cards) => {
     return cardIDs;
 }
 
+Deck.getCard = (id) => {
+    let cincoDeOuros;
+    loop(Deck.getList(), card => {
+        if (card.id === id) {
+            cincoDeOuros = card;
+            return;
+        }
+    });
+    return cincoDeOuros;
+};
+
 Deck.numbers = ['As', '2', '3', '4', '5', '6', '7', 'Sota', 'Cabalo', 'Rei'];
 Deck.suits = ['Ouros', 'Copas', 'Espadas', 'Bastos'];
 

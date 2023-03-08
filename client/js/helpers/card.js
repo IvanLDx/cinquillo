@@ -14,7 +14,7 @@ const Card = (card) => {
         let boardCenterX = (cv.width / 2);
         let boardCenterY = (cv.height / 2);
         let deckWidth = player.cards.length;
-        switch (player.round) {
+        switch (player.tablePosition) {
             case 0: setPos0(); break;
             case 1: setPos1(); break;
             case 2: setPos2(); break;
@@ -55,14 +55,14 @@ const Card = (card) => {
     };
 
     self.draw = (player) => {
-        if (player.round === 1) {
+        if (player.tablePosition === 1) {
             ctx.save();
             ctx.translate(card.left - (Card.dw / 2), card.top + Card.dh);
             ctx.rotate(Math.PI / 180 * -90);
             card.destination = [
                 0, 0, Card.dw, Card.dh
             ];
-        } else if (player.round === 3) {
+        } else if (player.tablePosition === 3) {
             ctx.save();
             ctx.translate(card.left + 34, card.top + 10);
             ctx.rotate(Math.PI / 180 * 90);
@@ -70,7 +70,7 @@ const Card = (card) => {
                 0, 0, Card.dw, Card.dh
             ];
         }
-        if (player.round === 0) {
+        if (player.tablePosition === 0) {
             ctx.drawImage(helper.img, ...card.imgSource, ...card.destination);
         } else {
             ctx.drawImage(helper.imgReverse, ...card.destination);
